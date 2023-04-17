@@ -8,7 +8,7 @@ FIELD_COLOR = (47,48,51)
 TILE_SIZE = 40
 FIELD_RES = 10 * TILE_SIZE , 20 * TILE_SIZE     #standard tetris window is 10 blocks in width, 20 blocks in hieght
 
-INIT_POS_OFFSET = vec(5, 10)
+INIT_POS_OFFSET = vec(5, 0)
 
 TETROMINOS_SHAPE = {
     'T': [(0, 0), (-1, 0), (1, 0), (0, -1)],
@@ -28,4 +28,10 @@ TETROMINOS_COLOR = {
     'I': (5, 119, 210),   #Blue 
     'S': (254, 190, 46),  #Yellow
     'Z': (15, 237, 250)    #Cyan
+}
+
+MOVING_DIRECTIONS = {
+    'left': vec(-1,0),
+    'right': vec(1,0),
+    'down': vec(0,1)
 }
