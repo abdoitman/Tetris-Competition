@@ -17,6 +17,23 @@ class Tetris:
     def get_field_array(self):
         return [[0 for x in range(FIELD_W)] for y in range(FIELD_H)]
 
+    def check_full_lines(self):
+        row = FIELD_H - 1
+        for y in range(FIELD_H -1, -1, -1):
+            for x in range(FIELD_W):
+                self.field_array[row][x] = self.field_array[y][x]
+
+                if self.field_array[y][x]:
+                    self.field_array[row][x].pos = vec(x, y)
+
+            if sum(map(bool, self.field_array[y])) < FIELD_H:
+                row -= 1
+            else:
+                for x in range(FIELD_W):
+                    self.field_array[row][x].alive = False
+                    self.field_array[row][x] = 0
+
+
     def check_if_tetromino_has_landed(self):
         if self.tetromino.landed:
             self.put_tetromino_in_field_array()
@@ -27,6 +44,7 @@ class Tetris:
 
     def update(self):
         if self.app.anim_trigger:
+            self.check_full_lines()
             self.tetromino.update()
             self.check_if_tetromino_has_landed()
         self.sprite_group.update()
