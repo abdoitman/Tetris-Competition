@@ -12,6 +12,7 @@ FIELD_RES = 10 * TILE_SIZE , 20 * TILE_SIZE     #standard tetris window is 10 bl
 INIT_POS_OFFSET = vec(5, 0)
 
 ANIM_TIME_INTERVAL = 150 #ms
+FAST_ANIM_TIME_INTERVAL = 10 #ms
 
 TETROMINOS_SHAPE = {
     'T': [(0, 0), (-1, 0), (1, 0), (0, -1)],

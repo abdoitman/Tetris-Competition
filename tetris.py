@@ -8,6 +8,7 @@ class Tetris:
         self.sprite_group = pg.sprite.Group()
         self.field_array = self.get_field_array()
         self.tetromino = Tetromino(self)
+        self.speed_up = False
 
     def put_tetromino_in_field_array(self):
         for block in self.tetromino.blocks:
@@ -33,17 +34,17 @@ class Tetris:
                     self.field_array[row][x].alive = False
                     self.field_array[row][x] = 0
 
-
     def check_if_tetromino_has_landed(self):
         if self.tetromino.landed:
             self.put_tetromino_in_field_array()
             self.tetromino = Tetromino(self)
 
-    def control(self):
+    def control(self,):
         pass
 
     def update(self):
-        if self.app.anim_trigger:
+        trigger =  [self.app.anim_trigger, self.app.fast_anim_trigger][self.speed_up]
+        if trigger:
             self.check_full_lines()
             self.tetromino.update()
             self.check_if_tetromino_has_landed()
