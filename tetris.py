@@ -19,6 +19,11 @@ class Tetris:
     def get_field_array(self):
         return [[0 for x in range(FIELD_W)] for y in range(FIELD_H)]
 
+    def is_game_over(self):
+        if self.tetromino.blocks[0].pos.y == INIT_POS_OFFSET[1]:
+            pg.time.wait(500)
+            return True
+
     def check_full_lines(self):
         row = FIELD_H - 1
         for y in range(FIELD_H -1, -1, -1):
@@ -37,6 +42,9 @@ class Tetris:
 
     def check_if_tetromino_has_landed(self):
         if self.tetromino.landed:
+            if self.is_game_over():
+                pg.quit()
+                sys.exit()
             self.speed_up = False
             self.put_tetromino_in_field_array()
             self.next_tetromino.current = True
