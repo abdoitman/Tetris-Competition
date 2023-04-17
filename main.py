@@ -23,8 +23,8 @@ class App:
     def draw(self):
         self.screen.fill(color=FIELD_COLOR)
         self.draw_grid()
-        pg.display.flip()
         self.tetris.draw()
+        pg.display.flip()
         
     def check_for_events(self):
         for event in pg.event.get():
