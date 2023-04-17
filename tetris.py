@@ -9,7 +9,8 @@ class Tetris:
         self.tetromino = Tetromino(self)
 
     def update(self):
-        self.tetromino.update()
+        if self.app.anim_trigger:
+            self.tetromino.update()
         self.sprite_group.update()
 
     def draw(self):
