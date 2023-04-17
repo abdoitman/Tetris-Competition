@@ -27,7 +27,7 @@ class Tetris:
                 if self.field_array[y][x]:
                     self.field_array[row][x].pos = vec(x, y)
 
-            if sum(map(bool, self.field_array[y])) < FIELD_H:
+            if sum(map(bool, self.field_array[y])) < FIELD_W:
                 row -= 1
             else:
                 for x in range(FIELD_W):
@@ -40,8 +40,15 @@ class Tetris:
             self.put_tetromino_in_field_array()
             self.tetromino = Tetromino(self)
 
-    def control(self,):
-        pass
+    def control(self, pressed_key):
+        if pressed_key == pg.K_LEFT:
+            self.tetromino.move(direction='left')
+        elif pressed_key == pg.K_RIGHT:
+            self.tetromino.move(direction='right')
+        if pressed_key == pg.K_UP:
+            self.tetromino.rotate()
+        if pressed_key == pg.K_DOWN:
+            self.speed_up =True
 
     def update(self):
         trigger =  [self.app.anim_trigger, self.app.fast_anim_trigger][self.speed_up]
