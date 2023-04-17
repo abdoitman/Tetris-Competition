@@ -12,6 +12,11 @@ class Block(pg.sprite.Sprite):
         
         self.rect = self.image.get_rect()
     
+    def rotate(self, pivot_pos):
+        translated = self.pos - pivot_pos
+        rotated = translated.rotate(90)
+        return rotated + pivot_pos
+
     def update_rect_pos(self):
         self.rect.topleft = self.pos * TILE_SIZE
 
@@ -34,6 +39,14 @@ class Tetromino:
 
     def is_colided(self, blocks_positions):
         return any(map(Block.is_colided, self.blocks, blocks_positions))   
+
+    def rotate(self):
+        pivot_pos = self.blocks[0].pos
+        new_block_positions = [block.rotate(pivot_pos) for block in self.blocks]
+
+        if not self.is_colided(new_block_positions):
+            for index, block in enumerate(self.blocks):
+                block.pos = new_block_positions[index]
 
     def move(self, direction):
         moving_direction = MOVING_DIRECTIONS[direction]
