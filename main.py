@@ -3,7 +3,7 @@ from tetris import Tetris
 import sys
 
 class App:
-    def __init__(self) -> None:
+    def __init__(self):
         pg.init()
         pg.display.set_caption("Tetris Game")
         self.screen = pg.display.set_mode(FIELD_RES)
