@@ -1,4 +1,5 @@
 from settings import *
+import random
 
 class Block(pg.sprite.Sprite):
     def __init__(self, tetromino, pos, color):
@@ -15,7 +16,7 @@ class Block(pg.sprite.Sprite):
 class Tetromino:
     def __init__(self, tetris) -> None:
         self.tetris = tetris
-        self.shape = 'Z'
+        self.shape = random.choice(list(TETROMINOS_SHAPE.keys()))
         self.color = TETROMINOS_COLOR[self.shape]
         self.blocks = [Block(self, pos, self.color) for pos in TETROMINOS_SHAPE[self.shape]]
         
