@@ -8,6 +8,7 @@ class Tetris:
         self.sprite_group = pg.sprite.Group()
         self.field_array = self.get_field_array()
         self.tetromino = Tetromino(self)
+        self.next_tetromino = Tetromino(self, current= False)
         self.speed_up = False
 
     def put_tetromino_in_field_array(self):
@@ -38,7 +39,9 @@ class Tetris:
         if self.tetromino.landed:
             self.speed_up = False
             self.put_tetromino_in_field_array()
-            self.tetromino = Tetromino(self)
+            self.next_tetromino.current = True
+            self.tetromino = self.next_tetromino
+            self.next_tetromino = Tetromino(self, current= False)
 
     def control(self, pressed_key):
         if pressed_key == pg.K_LEFT:

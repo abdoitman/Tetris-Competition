@@ -5,6 +5,7 @@ class Block(pg.sprite.Sprite):
     def __init__(self, tetromino, pos, color):
         self.tetromino = tetromino
         self.pos = vec(pos) + INIT_POS_OFFSET
+        self.next_pos = vec(pos) + NEXT_TETROMIO_OFFSET
         self.alive = True
 
         super().__init__(tetromino.tetris.sprite_group)
@@ -22,10 +23,11 @@ class Block(pg.sprite.Sprite):
         return rotated + pivot_pos
 
     def update_rect_pos(self):
-        self.check_if_alive()
-        self.rect.topleft = self.pos * TILE_SIZE
+        pos = [self.next_pos, self.pos][self.tetromino.current]
+        self.rect.topleft = pos * TILE_SIZE
 
     def update(self):
+        self.check_if_alive()
         self.update_rect_pos()
     
     def is_colided(self, pos):
@@ -35,12 +37,13 @@ class Block(pg.sprite.Sprite):
         return True
 
 class Tetromino:
-    def __init__(self, tetris) -> None:
+    def __init__(self, tetris, current= True) -> None:
         self.tetris = tetris
         self.shape = random.choice(list(TETROMINOS_SHAPE.keys()))
         self.color = TETROMINOS_COLOR[self.shape]
         self.blocks = [Block(self, pos, self.color) for pos in TETROMINOS_SHAPE[self.shape]]
         self.landed = False
+        self.current = current
 
     def is_colided(self, blocks_positions):
         return any(map(Block.is_colided, self.blocks, blocks_positions))   

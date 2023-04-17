@@ -4,6 +4,7 @@ vec = pg.math.Vector2
 
 FPS = 60
 FIELD_COLOR = 'black'
+INFO_BG_COLOR = 'darkgrey'
 
 TILE_SIZE = 40
 FIELD_SIZE = FIELD_W , FIELD_H = 10, 20
@@ -11,8 +12,12 @@ FIELD_RES = 10 * TILE_SIZE , 20 * TILE_SIZE     #standard tetris window is 10 bl
 
 INIT_POS_OFFSET = vec(5, 0)
 
-ANIM_TIME_INTERVAL = 150 #ms
-FAST_ANIM_TIME_INTERVAL = 10 #ms
+ANIM_TIME_INTERVAL = 500 #ms
+FAST_ANIM_TIME_INTERVAL = 5 #ms
+
+FIELD_SCALE_W , FIELD_SCALE_H = 1.7, 1
+NEXT_TETROMIO_OFFSET = vec(FIELD_W * 1.3, FIELD_H * 0.45)
+WIN_RES = WIN_W, WIN_H = FIELD_SCALE_W * FIELD_RES[0] , FIELD_SCALE_H * FIELD_RES[1]
 
 TETROMINOS_SHAPE = {
     'T': [(0, 0), (-1, 0), (1, 0), (0, -1)],
@@ -31,7 +36,7 @@ TETROMINOS_COLOR = {
     'L': (57, 137, 47),   #Green
     'I': (5, 119, 210),   #Blue 
     'S': (254, 190, 46),  #Yellow
-    'Z': (15, 237, 250)    #Cyan
+    'Z': (15, 237, 250)   #Cyan
 }
 
 MOVING_DIRECTIONS = {
