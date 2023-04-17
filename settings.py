@@ -3,7 +3,7 @@ import pygame as pg
 vec = pg.math.Vector2
 
 FPS = 60
-FIELD_COLOR = (47,48,51)
+FIELD_COLOR = 'black'
 
 TILE_SIZE = 40
 FIELD_SIZE = FIELD_W , FIELD_H = 10, 20
