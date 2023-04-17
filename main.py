@@ -23,13 +23,13 @@ class App:
     def draw_grid(self):
         for x in range(10):
             for y in range(20):
-                pg.draw.rect(self.screen, (40,40,40),
+                pg.draw.rect(self.screen, (20,20,20),
                              (x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE), 1)
 
     def draw(self):
         self.screen.fill(color=FIELD_COLOR)
-        self.draw_grid()
         self.tetris.draw()
+        self.draw_grid()
         pg.display.flip()
         
     def check_for_events(self):
