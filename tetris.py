@@ -36,6 +36,7 @@ class Tetris:
 
     def check_if_tetromino_has_landed(self):
         if self.tetromino.landed:
+            self.speed_up = False
             self.put_tetromino_in_field_array()
             self.tetromino = Tetromino(self)
 
