@@ -8,22 +8,24 @@ FPS = 120
 FIELD_COLOR = 'black'
 INFO_BG_COLOR = (37,37,37)
 
+FONT_PATH = "assets\Archive.otf"
+
 TILE_SIZE = 40
 FIELD_SIZE = FIELD_W , FIELD_H = 10, 20
 FIELD_RES = 10 * TILE_SIZE , 20 * TILE_SIZE     #standard tetris window is 10 blocks in width, 20 blocks in hieght
 
 INIT_POS_OFFSET = vec(5, 0)
 
-ANIM_TIME_INTERVAL = 500 #ms
-FAST_ANIM_TIME_INTERVAL = 5 #ms
+ANIM_TIME_INTERVAL = 600 #ms
+FAST_ANIM_TIME_INTERVAL = 1 #ms
 
 FIELD_SCALE_W , FIELD_SCALE_H = 1.7, 1
-NEXT_TETROMIO_OFFSET = vec(FIELD_W * 1.3, FIELD_H * 0.45)
+NEXT_TETROMIO_OFFSET = vec(FIELD_W * 1.278, FIELD_H * 0.194)
 WIN_RES = WIN_W, WIN_H = FIELD_SCALE_W * FIELD_RES[0] , FIELD_SCALE_H * FIELD_RES[1]
 
 TETROMINOS_SHAPE = {
     'T': [(0, 0), (-1, 0), (1, 0), (0, -1)],
-    'O': [(0, 0), (0, -1), (1, 0), (1, -1)],
+    'O': [(0, 0), (0, -1), (-1, 0), (-1, -1)],
     'J': [(0, 0), (-1, 0), (0, -1), (0, -2)],
     'L': [(0, 0), (1, 0), (0, -1), (0, -2)],
     'I': [(0, 0), (0, 1), (0, -1), (0, -2)],
@@ -45,4 +47,16 @@ MOVING_DIRECTIONS = {
     'left': vec(-1,0),
     'right': vec(1,0),
     'down': vec(0,1)
+}
+
+LEVEL_TIME_INTERVAL = {
+    1 : 600,
+    2 : 540,
+    3 : 480,
+    4 : 420,
+    5 : 360,
+    6 : 300,
+    7 : 240,
+    8 : 180,
+    9 : 120
 }
