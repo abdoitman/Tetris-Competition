@@ -1,5 +1,5 @@
 from settings import *
-from tetris import Tetris
+from tetris import Tetris, Text
 
 class App:
     def __init__(self):
@@ -9,6 +9,7 @@ class App:
         self.clock = pg.time.Clock()
         self.set_timer()
         self.tetris = Tetris(self)
+        self.text = Text(self)
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0
@@ -33,6 +34,7 @@ class App:
         self.screen.fill(color=FIELD_COLOR, rect=(0, 0, *FIELD_RES))
         self.tetris.draw()
         self.draw_grid()
+        self.text.draw()
         pg.display.flip()
         
     def check_for_events(self):
