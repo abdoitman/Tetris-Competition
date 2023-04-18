@@ -8,15 +8,19 @@ class Text:
         self.font = ft.Font(FONT_PATH)
 
     def draw(self):
-        self.font.render_to(self.app.screen, (WIN_W * 0.685, WIN_H * 0.15),
+        self.font.render_to(self.app.screen, (WIN_W * 0.685, WIN_H * 0.02),
                             text= "Next", fgcolor= 'white', size= TILE_SIZE * 1.6)
-        self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.45),
+        self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.32),
                             text= "Level", fgcolor= 'white', size= TILE_SIZE * 1.6)
-        self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.55),
-                            text= "Level", fgcolor= 'white', size= TILE_SIZE * 1.4)
-        self.font.render_to(self.app.screen, (WIN_W * 0.685, WIN_H * 0.7),
+        self.font.render_to(self.app.screen, (WIN_W * 0.66, WIN_H * 0.395),
+                            text= f"{self.app.tetris.level}", fgcolor= 'white', size= TILE_SIZE * 1.4)
+        self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.52),
+                            text= "Lines", fgcolor= 'white', size= TILE_SIZE * 1.6)
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.605),
+                            text= f"{self.app.tetris.total_lines_cleared}", fgcolor= 'white', size= TILE_SIZE * 1.4)
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.7),
                             text= "Score", fgcolor= 'white', size= TILE_SIZE * 1.6)
-        self.font.render_to(self.app.screen, (WIN_W * 0.685, WIN_H * 0.8),
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.8),
                             text= f"{self.app.tetris.score}", fgcolor= 'white', size= TILE_SIZE * 1.4)
 
 class Tetris:
@@ -41,8 +45,19 @@ class Tetris:
         }
 
     def get_score(self):
-        self.score += self.points_per_line[self.full_lines]
+        self.score += self.points_per_line[self.full_lines] * self.level
         self.full_lines = 0
+
+    def get_level(self):
+        self.level = ( self.total_lines_cleared // 10 ) + 1 
+
+    def update_level_speed(self):
+        if self.level < 10:
+            ANIM_TIME_INTERVAL = LEVEL_TIME_INTERVAL[self.level]
+        elif self.level < 20:
+            ANIM_TIME_INTERVAL = 100
+        else:
+            ANIM_TIME_INTERVAL = 50
 
     def put_tetromino_in_field_array(self):
         for block in self.tetromino.blocks:
@@ -54,7 +69,7 @@ class Tetris:
 
     def is_game_over(self):
         if self.tetromino.blocks[0].pos.y == INIT_POS_OFFSET[1]:
-            pg.time.wait(500)
+            pg.time.wait(1500)
             return True
 
     def check_full_lines(self):
@@ -105,6 +120,8 @@ class Tetris:
             self.tetromino.update()
             self.check_if_tetromino_has_landed()
             self.get_score()
+            self.get_level()
+            self.update_level_speed()
         self.sprite_group.update()
 
     def draw(self):
