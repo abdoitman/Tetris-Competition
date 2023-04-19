@@ -1,6 +1,7 @@
 import random
 
 bag = ['S', 'L', 'Z', 'O', 'T', 'I', 'J']
+random.shuffle(bag)
 
 def get_next_shape():
     global bag
@@ -10,5 +11,4 @@ def get_next_shape():
             random.shuffle(bag)
             yield bag.pop()
         else:
-            random.shuffle(bag)
             yield bag.pop()
