@@ -36,9 +36,10 @@ class Block(pg.sprite.Sprite):
         return True
 
 class Tetromino:
-    def __init__(self, tetris, current= True) -> None:
+    def __init__(self, tetris, shape, current= True):
         self.tetris = tetris
-        self.shape = random.choice(list(TETROMINOS_SHAPE.keys()))
+        # self.shape = random.choice(list(TETROMINOS_SHAPE.keys()))
+        self.shape = shape
         self.color = TETROMINOS_COLOR[self.shape]
         self.blocks = [Block(self, pos, self.color) for pos in TETROMINOS_SHAPE[self.shape]]
         self.landed = False
