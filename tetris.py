@@ -1,5 +1,6 @@
 from settings import *
 from tetromino import Tetromino
+from bagrandomizer import *
 import pygame.freetype as ft
 
 class Text:
@@ -28,8 +29,8 @@ class Tetris:
         self.app = app
         self.sprite_group = pg.sprite.Group()
         self.field_array = self.get_field_array()
-        self.tetromino = Tetromino(self)
-        self.next_tetromino = Tetromino(self, current= False)            
+        self.tetromino = Tetromino(self, next(get_next_shape()))
+        self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)            
         self.speed_up = False
 
         self.level = 1
@@ -100,7 +101,7 @@ class Tetris:
             self.put_tetromino_in_field_array()
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
-            self.next_tetromino = Tetromino(self, current= False)
+            self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
             pg.time.wait(500)
            
     def control(self, pressed_key):
