@@ -23,6 +23,10 @@ class Text:
                             text= "Score", fgcolor= 'white', size= TILE_SIZE * 1.6)
         self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.8),
                             text= f"{self.app.tetris.score}", fgcolor= 'white', size= TILE_SIZE * 1.4)
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.85),
+                            text= "Counter", fgcolor= 'white', size= TILE_SIZE * 1.6)
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.9),
+                            text= f"{self.app.counter // (FPS * 100)}", fgcolor= 'white', size= TILE_SIZE * 1.4)
 
 class Tetris:
     def __init__(self, app) -> None:
@@ -94,7 +98,6 @@ class Tetris:
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
             self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
-            pg.time.wait(500)
            
     def control(self, pressed_key):
         if pressed_key == pg.K_LEFT:
