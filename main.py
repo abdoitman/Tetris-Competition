@@ -7,6 +7,7 @@ class App:
         pg.display.set_caption("Tetris Game")
         self.screen = pg.display.set_mode(WIN_RES)
         self.clock = pg.time.Clock()
+        self.counter = GAME_DURATION * 100 * FPS
         self.tetris = Tetris(self)
         self.text = Text(self)
         self.set_timer()
@@ -18,8 +19,10 @@ class App:
         self.fast_anim_trigger = False
         pg.time.set_timer(self.user_event, ANIM_TIME_INTERVAL)
         pg.time.set_timer(self.fast_user_event, FAST_ANIM_TIME_INTERVAL)
+
     def update(self):
         self.clock.tick(FPS)
+        self.counter -= FPS 
         self.tetris.update()
     
     def draw_grid(self):
@@ -40,7 +43,7 @@ class App:
         self.anim_trigger = False
         self.fast_anim_trigger = False
         for event in pg.event.get():
-            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
+            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE) or self.counter <= 0:
                 pg.quit()
                 sys.exit()    
             elif event.type == pg.KEYDOWN:
