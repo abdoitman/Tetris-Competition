@@ -7,9 +7,9 @@ class App:
         pg.display.set_caption("Tetris Game")
         self.screen = pg.display.set_mode(WIN_RES)
         self.clock = pg.time.Clock()
-        self.set_timer()
         self.tetris = Tetris(self)
         self.text = Text(self)
+        self.set_timer()
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0
@@ -18,7 +18,6 @@ class App:
         self.fast_anim_trigger = False
         pg.time.set_timer(self.user_event, ANIM_TIME_INTERVAL)
         pg.time.set_timer(self.fast_user_event, FAST_ANIM_TIME_INTERVAL)
-
     def update(self):
         self.clock.tick(FPS)
         self.tetris.update()

@@ -52,14 +52,6 @@ class Tetris:
     def get_level(self):
         self.level = ( self.total_lines_cleared // 10 ) + 1 
 
-    def update_level_speed(self):
-        if self.level < 10:
-            ANIM_TIME_INTERVAL = LEVEL_TIME_INTERVAL[self.level]
-        elif self.level < 20:
-            ANIM_TIME_INTERVAL = 100
-        else:
-            ANIM_TIME_INTERVAL = 50
-
     def put_tetromino_in_field_array(self):
         for block in self.tetromino.blocks:
             x, y = int(block.pos.x), int(block.pos.y)
@@ -122,7 +114,6 @@ class Tetris:
             self.check_if_tetromino_has_landed()
             self.get_score()
             self.get_level()
-            self.update_level_speed()
         self.sprite_group.update()
 
     def draw(self):
