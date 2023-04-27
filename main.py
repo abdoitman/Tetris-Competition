@@ -43,9 +43,13 @@ class App:
         self.anim_trigger = False
         self.fast_anim_trigger = False
         for event in pg.event.get():
-            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE) or self.counter <= 0:
+            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
-                sys.exit()    
+                sys.exit()
+            elif self.counter <= 0:
+                pg.time.wait(1000)
+                pg.quit()
+                sys.exit()
             elif event.type == pg.KEYDOWN:
                 self.tetris.control(pressed_key= event.key)
             elif event.type == self.user_event:
