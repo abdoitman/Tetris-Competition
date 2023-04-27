@@ -41,16 +41,10 @@ class Tetris:
         self.score = 0
         self.full_lines = 0
         self.total_lines_cleared = 0
-        self.points_per_line = {
-            0 : 0,
-            1 : 800,
-            2 : 1200,
-            3 : 1800,
-            4 : 2000
-        }
+        
 
     def get_score(self):
-        self.score += self.points_per_line[self.full_lines] * self.level
+        self.score += POINTS_PER_LINE[self.full_lines] * self.level
         self.full_lines = 0
 
     def get_level(self):

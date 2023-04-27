@@ -50,6 +50,14 @@ MOVING_DIRECTIONS = {
     'down': vec(0,1)
 }
 
+POINTS_PER_LINE = {
+            0 : 0,
+            1 : 800,
+            2 : 1200,
+            3 : 1800,
+            4 : 2000
+        }
+
 LEVEL_TIME_INTERVAL = {
     1 : 600,
     2 : 540,
