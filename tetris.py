@@ -12,20 +12,20 @@ class Text:
         self.font.render_to(self.app.screen, (WIN_W * 0.685, WIN_H * 0.02),
                             text= "Next", fgcolor= 'white', size= TILE_SIZE * 1.6)
         self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.32),
-                            text= "Level", fgcolor= 'white', size= TILE_SIZE * 1.6)
+                            text= "Level", fgcolor= 'white', size= TILE_SIZE * 1.4)
         self.font.render_to(self.app.screen, (WIN_W * 0.66, WIN_H * 0.39),
                             text= f"{self.app.tetris.level}", fgcolor= 'white', size= TILE_SIZE * 1.4)
-        self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.52),
-                            text= "Lines", fgcolor= 'white', size= TILE_SIZE * 1.6)
-        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.6),
+        self.font.render_to(self.app.screen, (WIN_W * 0.6667, WIN_H * 0.49),
+                            text= "Lines", fgcolor= 'white', size= TILE_SIZE * 1.4)
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.57),
                             text= f"{self.app.tetris.total_lines_cleared}", fgcolor= 'white', size= TILE_SIZE * 1.4)
-        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.7),
-                            text= "Score", fgcolor= 'white', size= TILE_SIZE * 1.6)
-        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.795),
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.67),
+                            text= "Score", fgcolor= 'white', size= TILE_SIZE * 1.4)
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.742),
                             text= f"{self.app.tetris.score}", fgcolor= 'white', size= TILE_SIZE * 1.4)
-        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.865),
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.845),
                             text= "Time Left", fgcolor= 'white', size= TILE_SIZE * 1)
-        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.92),
+        self.font.render_to(self.app.screen, (WIN_W * 0.655, WIN_H * 0.888),
                             text= f"{self.app.counter // (FPS * 100)}", fgcolor= 'white', size= TILE_SIZE * 1.4)
 
 class Tetris:
