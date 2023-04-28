@@ -16,9 +16,12 @@ class Block(pg.sprite.Sprite):
         if not self.alive:
             self.kill()
 
-    def rotate(self, pivot_pos):
+    def rotate(self, pivot_pos, direction):
         translated = self.pos - pivot_pos
-        rotated = translated.rotate(90)
+        if direction == 'LEFT':
+            rotated = translated.rotate(90)
+        else:
+            rotated = translated.rotate(-90)
         return rotated + pivot_pos
 
     def update_rect_pos(self):
