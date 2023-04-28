@@ -99,7 +99,9 @@ class Tetris:
         elif pressed_key == pg.K_RIGHT:
             self.tetromino.move(direction='right')
         if pressed_key == pg.K_UP:
-            self.tetromino.rotate()
+            self.tetromino.rotate('CW')
+        if pressed_key == pg.K_n:
+            self.tetromino.rotate("CCW")
         if pressed_key == pg.K_DOWN:
             self.speed_up =True
 

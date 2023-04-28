@@ -18,10 +18,10 @@ class Block(pg.sprite.Sprite):
 
     def rotate(self, pivot_pos, direction):
         translated = self.pos - pivot_pos
-        if direction == 'LEFT':
-            rotated = translated.rotate(90)
-        else:
-            rotated = translated.rotate(-90)
+        if direction == 'CW':
+            rotated = translated.rotate(90) #clockwise
+        elif direction == 'CCW':
+            rotated = translated.rotate(-90) #counter clockwise
         return rotated + pivot_pos
 
     def update_rect_pos(self):
@@ -51,9 +51,9 @@ class Tetromino:
     def is_colided(self, blocks_positions):
         return any(map(Block.is_colided, self.blocks, blocks_positions))   
 
-    def rotate(self):
+    def rotate(self, direction):
         pivot_pos = self.blocks[0].pos
-        new_block_positions = [block.rotate(pivot_pos) for block in self.blocks]
+        new_block_positions = [block.rotate(pivot_pos, direction) for block in self.blocks]
 
         if not self.is_colided(new_block_positions):
             for index, block in enumerate(self.blocks):
