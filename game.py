@@ -11,6 +11,7 @@ class App:
         self.tetris = Tetris(self)
         self.text = Text(self)
         self.set_timer()
+        # self.tetris.control_via_array(["MOV_L" , "ROT_CW" , "ROT_CW" , "MOV_D"])
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0

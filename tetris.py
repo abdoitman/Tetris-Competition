@@ -92,6 +92,7 @@ class Tetris:
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
             self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
+            # self.control_via_array(["MOV_L" , "MOV_L" , "MOV_L" , "MOV_L" , "ROT_CW"])
            
     def control(self, pressed_key):
         if pressed_key == pg.K_LEFT:
@@ -104,6 +105,16 @@ class Tetris:
             self.tetromino.rotate("CCW")
         if pressed_key == pg.K_DOWN:
             self.speed_up =True
+
+    def control_via_array(self, control_array):
+        for control in control_array:
+            if control[:3] == "MOV":
+                if control[-1] == "D":
+                    self.speed_up =True
+                    break
+                self.tetromino.move(direction= CONTROLS[control[-1]])
+            elif control[:3] == "ROT":
+                self.tetromino.rotate(direction= control[4:])
 
     def update(self):
         trigger =  [self.app.anim_trigger, self.app.fast_anim_trigger][self.speed_up]

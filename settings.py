@@ -69,3 +69,9 @@ LEVEL_TIME_INTERVAL = {
     8 : 180,
     9 : 120
 }
+
+CONTROLS = {
+    'L' : "left",
+    'R' : "right",
+    'D' : "down"
+}
