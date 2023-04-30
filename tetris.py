@@ -85,6 +85,7 @@ class Tetris:
     def check_if_tetromino_has_landed(self):
         if self.tetromino.landed:
             if self.is_game_over():
+                pg.time.wait(1000)
                 pg.quit()
                 sys.exit()
             self.speed_up = False
@@ -92,7 +93,8 @@ class Tetris:
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
             self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
-            # self.control_via_array(["MOV_L" , "MOV_L" , "MOV_L" , "MOV_L" , "ROT_CW"])
+            self.state = self.return_state_info()
+            self.control_via_array(["MOV_L" , "MOV_L" , "MOV_L" , "MOV_L" , "ROT_CW"])
            
     def control(self, pressed_key):
         if pressed_key == pg.K_LEFT:
@@ -105,6 +107,15 @@ class Tetris:
             self.tetromino.rotate("CCW")
         if pressed_key == pg.K_DOWN:
             self.speed_up =True
+
+    def return_state_info(self):
+        return (self.field_array,
+                self.tetromino.shape,
+                self.next_tetromino.shape,
+                self.app.counter // (100 * FPS),
+                self.level,
+                self.score,
+                self.total_lines_cleared)
 
     def control_via_array(self, control_array):
         for control in control_array:
