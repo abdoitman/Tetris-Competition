@@ -3,3 +3,6 @@ __pycache__/
 
 #ignore tests
 test*
+
+#ignore server files
+server_files/
