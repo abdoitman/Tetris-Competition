@@ -11,8 +11,6 @@ class App:
         self.tetris = Tetris(self)
         self.text = Text(self)
         self.set_timer()
-        self.tetris.state = self.tetris.return_state_info()
-        self.tetris.control_via_array(["MOV_L" , "ROT_CW" , "ROT_CW" , "MOV_D"])
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0
@@ -44,6 +42,12 @@ class App:
     def check_for_events(self):
         self.anim_trigger = False
         self.fast_anim_trigger = False
+        if self.tetris.start_game:
+            self.tetris.state = self.tetris.return_state_info()
+            controls = self.tetris.solver(*self.tetris.state)
+            self.tetris.control_via_array(controls)
+            self.tetris.start_game = False
+            
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
