@@ -2,6 +2,7 @@ from settings import *
 from tetromino import Tetromino
 from bagrandomizer import *
 import pygame.freetype as ft
+import numpy as np
 
 class Text:
     def __init__(self, app):
@@ -36,12 +37,12 @@ class Tetris:
         self.tetromino = Tetromino(self, next(get_next_shape()))
         self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)            
         self.speed_up = False
+        self.start_game = True
 
         self.level = 1
         self.score = 0
         self.full_lines = 0
         self.total_lines_cleared = 0
-        
 
     def get_score(self):
         self.score += POINTS_PER_LINE[self.full_lines] * self.level
@@ -82,6 +83,9 @@ class Tetris:
                 self.full_lines += 1
                 self.total_lines_cleared += 1
 
+    def solver(self, logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared):
+       return []
+
     def check_if_tetromino_has_landed(self):
         if self.tetromino.landed:
             if self.is_game_over():
@@ -93,9 +97,11 @@ class Tetris:
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
             self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
+
             self.state = self.return_state_info()
-            self.control_via_array(["MOV_L" , "MOV_L" , "MOV_L" , "MOV_L" , "ROT_CW"])
-           
+            controls = self.solver(*self.state)
+            self.control_via_array(controls)
+    
     def control(self, pressed_key):
         if pressed_key == pg.K_LEFT:
             self.tetromino.move(direction='left')
@@ -109,7 +115,10 @@ class Tetris:
             self.speed_up =True
 
     def return_state_info(self):
-        return (self.field_array,
+        logical_field_array = np.array(self.field_array)
+        indicies = np.nonzero(self.field_array)
+        logical_field_array[indicies] = 1
+        return (logical_field_array,
                 self.tetromino.shape,
                 self.next_tetromino.shape,
                 self.app.counter // (100 * FPS),
