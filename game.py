@@ -22,7 +22,7 @@ class App:
     def begin(self):
         server_link = SERVER + f"/submit/{self.team_id}"
         r = requests.get(server_link)
-        if r.status_code == 200:
+        if r.json()['status_code'] == 200:
             self.seed = r.json()['seed']
         else:
             raise Exception(r.json()['detail'])
@@ -87,12 +87,15 @@ class App:
             url= submit_link,
             data= json.dumps(self.info, indent=4)
         )
-        if r.status_code == 200:
+        if r.json()['status_code'] == 200:
             print(r.json()['response'])
         else:
             raise Exception(r.json()['detail'])
 
     def run(self):
+        if self.server:
+            self.begin()
+            
         while True:
             self.check_for_events()
             if not self.running:
