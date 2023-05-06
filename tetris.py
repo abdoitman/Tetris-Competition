@@ -43,6 +43,8 @@ class Tetris:
         self.score = 0
         self.full_lines = 0
         self.total_lines_cleared = 0
+        self.moves = 0
+        self.moves_info = []
 
     def get_score(self):
         self.score += POINTS_PER_LINE[self.full_lines] * self.level
@@ -80,6 +82,7 @@ class Tetris:
                     self.field_array[row][x].alive = False
                     self.field_array[row][x] = 0
 
+                self.moves_info.append(self.moves)
                 self.full_lines += 1
                 self.total_lines_cleared += 1
 
@@ -91,12 +94,14 @@ class Tetris:
             if self.is_game_over():
                 pg.time.wait(1000)
                 pg.quit()
-                sys.exit()
+                self.app.running = False
+                return
             self.speed_up = False
             self.put_tetromino_in_field_array()
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
             self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
+            self.moves += 1
 
             self.state = self.return_state_info()
             controls = self.solver(*self.state)
@@ -139,6 +144,8 @@ class Tetris:
     def update(self):
         trigger =  [self.app.anim_trigger, self.app.fast_anim_trigger][self.speed_up]
         if trigger:
+            self.app.info["S"] = self.score
+            self.app.info["LC"] = self.total_lines_cleared
             self.check_full_lines()
             self.tetromino.update()
             self.check_if_tetromino_has_landed()

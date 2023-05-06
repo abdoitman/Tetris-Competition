@@ -1,11 +1,10 @@
 import pygame as pg
-import sys
 import random
 
 vec = pg.math.Vector2
 
 FPS = 120
-GAME_DURATION = 90 #seconds
+GAME_DURATION = 20 #seconds
 FIELD_COLOR = 'black'
 INFO_BG_COLOR = (37,37,37)
 

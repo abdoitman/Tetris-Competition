@@ -2,15 +2,18 @@ from settings import *
 from tetris import Tetris, Text
 
 class App:
-    def __init__(self):
+    def __init__(self, server= False):
         pg.init()
         pg.display.set_caption("Tetris Game")
         self.screen = pg.display.set_mode(WIN_RES)
+        self.running = True
         self.clock = pg.time.Clock()
         self.counter = GAME_DURATION * 100 * FPS
         self.tetris = Tetris(self)
         self.text = Text(self)
         self.set_timer()
+        self.server = server
+        self.info = {"M": self.tetris.moves_info}
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0
@@ -42,6 +45,7 @@ class App:
     def check_for_events(self):
         self.anim_trigger = False
         self.fast_anim_trigger = False
+
         if self.tetris.start_game:
             self.tetris.state = self.tetris.return_state_info()
             controls = self.tetris.solver(*self.tetris.state)
@@ -51,11 +55,13 @@ class App:
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
-                sys.exit()
+                self.running = False
+                break
             elif self.counter <= 0:
                 pg.time.wait(1000)
                 pg.quit()
-                sys.exit()
+                self.running = False
+                break
             elif event.type == pg.KEYDOWN:
                 self.tetris.control(pressed_key= event.key)
             elif event.type == self.user_event:
@@ -66,7 +72,11 @@ class App:
     def run(self):
         while True:
             self.check_for_events()
+            if not self.running:
+                return
             self.update()
+            if not self.running:
+                return
             self.draw()
 
 if __name__ == "__main__":
