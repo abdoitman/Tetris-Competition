@@ -1,10 +1,14 @@
 import random
 
 bag = ['S', 'L', 'Z', 'O', 'T', 'I', 'J']
-random.shuffle(bag)
+first=True
 
-def get_next_shape():
-    global bag
+def get_next_shape(seed):
+    random.seed(seed)
+    global bag, first
+    if first:
+        random.shuffle(bag)
+        first = False
     while True:
         if bag == []:
             bag = ['S', 'L', 'Z', 'O', 'T', 'I', 'J']
