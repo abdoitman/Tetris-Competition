@@ -2,7 +2,7 @@ from settings import *
 from tetris import Tetris, Text
 
 class App:
-    def __init__(self, server= False):
+    def __init__(self, server= False, Team_id= None):
         pg.init()
         pg.display.set_caption("Tetris Game")
         self.screen = pg.display.set_mode(WIN_RES)
@@ -14,6 +14,9 @@ class App:
         self.set_timer()
         self.server = server
         self.info = {"M": self.tetris.moves_info}
+
+        if self.server:
+            self.team_id = Team_id
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0
@@ -69,15 +72,24 @@ class App:
             elif event.type == self.fast_user_event:
                 self.fast_anim_trigger = True
 
+    def submit(self):
+        submit_link = SERVER + f"/finish/{self.team_id}"
+        r = requests.post(
+            url= submit_link,
+            data= json.dumps(self.info, indent=4)
+        )
+        print(r.text)
+
     def run(self):
         while True:
             self.check_for_events()
             if not self.running:
-                return
+                break
             self.update()
             if not self.running:
-                return
+                break
             self.draw()
+        self.submit()
 
 if __name__ == "__main__":
     game = App()
