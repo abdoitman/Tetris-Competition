@@ -34,8 +34,8 @@ class Tetris:
         self.app = app
         self.sprite_group = pg.sprite.Group()
         self.field_array = self.get_field_array()
-        self.tetromino = Tetromino(self, next(get_next_shape()))
-        self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)            
+        self.tetromino = Tetromino(self, next(get_next_shape(self.app.seed)))
+        self.next_tetromino = Tetromino(self, next(get_next_shape(self.app.seed)), current= False)            
         self.speed_up = False
         self.start_game = True
 
@@ -100,7 +100,7 @@ class Tetris:
             self.put_tetromino_in_field_array()
             self.next_tetromino.current = True
             self.tetromino = self.next_tetromino
-            self.next_tetromino = Tetromino(self, next(get_next_shape()), current= False)
+            self.next_tetromino = Tetromino(self, next(get_next_shape(self.app.seed)), current= False)
             self.moves += 1
 
             self.state = self.return_state_info()
