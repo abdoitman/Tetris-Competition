@@ -1,6 +1,5 @@
 pygame
 random
-sys
 pygame.freetype
 numpy
 requests
