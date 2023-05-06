@@ -9,14 +9,14 @@ class App:
         self.running = True
         self.clock = pg.time.Clock()
         self.counter = GAME_DURATION * 100 * FPS
+        self.seed = random.randint(10,6000)
         self.tetris = Tetris(self)
         self.text = Text(self)
         self.set_timer()
         self.server = server
         self.info = {"M": self.tetris.moves_info}
-
+        
         if self.server:
-            self.seed = 12
             self.team_id = Team_id
 
     def begin(self):
