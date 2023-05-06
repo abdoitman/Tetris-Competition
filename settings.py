@@ -1,4 +1,5 @@
 import pygame as pg
+import requests, json
 import random
 
 vec = pg.math.Vector2
@@ -74,3 +75,5 @@ CONTROLS = {
     'R' : "right",
     'D' : "down"
 }
+
+SERVER = "http://127.0.0.1:8000"
