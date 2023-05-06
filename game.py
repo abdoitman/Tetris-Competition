@@ -16,7 +16,16 @@ class App:
         self.info = {"M": self.tetris.moves_info}
 
         if self.server:
+            self.seed = 12
             self.team_id = Team_id
+
+    def begin(self):
+        server_link = SERVER + f"/submit/{self.team_id}"
+        r = requests.get(server_link)
+        if r.status_code == 200:
+            self.seed = r.json()['seed']
+        else:
+            raise Exception(r.json()['detail'])
 
     def set_timer(self):
         self.user_event = pg.USEREVENT + 0
@@ -73,12 +82,15 @@ class App:
                 self.fast_anim_trigger = True
 
     def submit(self):
-        submit_link = SERVER + f"/finish/{self.team_id}"
+        submit_link = SERVER + f"/finish/{self.team_id}/"
         r = requests.post(
             url= submit_link,
             data= json.dumps(self.info, indent=4)
         )
-        print(r.text)
+        if r.status_code == 200:
+            print(r.json()['response'])
+        else:
+            raise Exception(r.json()['detail'])
 
     def run(self):
         while True:
@@ -89,7 +101,9 @@ class App:
             if not self.running:
                 break
             self.draw()
-        self.submit()
+        
+        if self.server:
+            self.submit()
 
 if __name__ == "__main__":
     game = App()
