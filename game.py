@@ -14,6 +14,7 @@ class App:
         self.text = Text(self)
         self.set_timer()
         self.server = server
+        self.c_info = []
         self.info = {"M": self.tetris.moves_info}
         
         if self.server:
@@ -95,7 +96,7 @@ class App:
     def run(self):
         if self.server:
             self.begin()
-            
+
         while True:
             self.check_for_events()
             if not self.running:
@@ -111,3 +112,4 @@ class App:
 if __name__ == "__main__":
     game = App()
     game.run()
+    print(game.info)

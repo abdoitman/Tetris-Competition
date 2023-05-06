@@ -83,6 +83,7 @@ class Tetris:
                     self.field_array[row][x] = 0
 
                 self.moves_info.append(self.moves)
+                self.app.c_info.append(self.app.counter)
                 self.full_lines += 1
                 self.total_lines_cleared += 1
 
@@ -146,6 +147,7 @@ class Tetris:
         if trigger:
             self.app.info["S"] = self.score
             self.app.info["LC"] = self.total_lines_cleared
+            self.app.info["C"] = self.app.c_info
             self.check_full_lines()
             self.tetromino.update()
             self.check_if_tetromino_has_landed()
