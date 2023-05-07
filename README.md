@@ -83,7 +83,7 @@ def server_solver(logical_map, current_tetromino, next_tetromino, time_left, lev
 
 ## __[Scoring](#scoring)__
 Scoring points in the game depends solely on 2 parameters: `lines_cleared` at the timea and `level` of the player.<br>
-#### Points per line
+### Points per line
 Points awarded after clearing the lines depends on how many lines are cleared in the single move according to the following table:
 | Lines cleared | Points |
 |:-------------:|:------:|
@@ -92,5 +92,8 @@ Points awarded after clearing the lines depends on how many lines are cleared in
 | 3             |  1800  |
 | 4             |  2000  |
 
-#### Level
+### Level
 Each run, the player starts at level **1**. After clearing 10 lines the player levels up.
+
+### Total Score
+After clearing some lines in a move, calculate the points awarded for them. Then the total score gets updated as: $total_score += points * level$
