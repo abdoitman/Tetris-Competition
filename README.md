@@ -99,4 +99,4 @@ def server_solver(logical_map, current_tetromino, next_tetromino, time_left, lev
     return []
 ```
 This will send a GET request to the API to start the game and begin the trial for the team.
-
+**NOTE**: Unfortunately the API is currently down, therefore server submissions doesn't work.
