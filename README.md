@@ -99,5 +99,5 @@ Similar to the local submission, to submit your algorithm to the API, fill `serv
 def server_solver(logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared) -> list:
     return []
 ```
-This will send a GET request to the API to start the game and begin the trial for the team.
+This will send a GET request to the API to start the game and begin the trial for the team.<br>
 **NOTE**: Unfortunately the API is currently down, therefore server submissions doesn't work.
