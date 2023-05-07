@@ -1,5 +1,5 @@
-from settings import *
-from tetris import Tetris, Text
+from .settings import *
+from .tetris import Tetris, Text
 
 class App:
     def __init__(self, server= False, Team_id= None):

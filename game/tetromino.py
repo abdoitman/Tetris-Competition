@@ -1,4 +1,4 @@
-from settings import *
+from .settings import *
 
 class Block(pg.sprite.Sprite):
     def __init__(self, tetromino, pos, color):

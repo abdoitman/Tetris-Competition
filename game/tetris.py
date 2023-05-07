@@ -1,6 +1,6 @@
-from settings import *
-from tetromino import Tetromino
-from bagrandomizer import *
+from .settings import *
+from .tetromino import Tetromino
+from .bagrandomizer import *
 import pygame.freetype as ft
 import numpy as np
 
