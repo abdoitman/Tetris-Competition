@@ -9,7 +9,7 @@
 ##########################
 # Enter the ID (consisting of 8 characters)
 # that was given to your team leader.
-TEAM_ID = "test2"
+TEAM_ID = ""
 NAME = ""
 ##########################
 
