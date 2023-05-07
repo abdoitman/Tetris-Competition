@@ -96,4 +96,4 @@ Points awarded after clearing the lines depends on how many lines are cleared in
 Each run, the player starts at level **1**. After clearing **10** lines the player levels up.
 
 ### Total Score
-After clearing some lines in a move, calculate the points awarded for them. Then the total score gets updated as: $Score_{total} += points . level$
+After clearing some lines in a move, calculate the points awarded for them. Then the total score gets updated as: $Score_{total} \mathrel{+}= points . level$
