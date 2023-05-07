@@ -7,7 +7,7 @@ Files needed to participate in the friendly Tetris contest either to run the gam
   - __[Tetrominos](#tetrominos)__
     + __[Tetromino Movement](#tetromino-movement)__
     + __[7-Bag Randomizer](#7-bag-randomizer)__
-  - __[How to Play](#how-to-play)__
+* __[How to Play](#how-to-play)__
 * __[Scoring](#scoring)__
 * __[Submitting to API](#submitting-to-api)__
 ## __[About The Contest](#about-the-contest)__
@@ -17,12 +17,12 @@ The contest is a game of **Tetris** where each team will try to *implement the b
 
 Each team can try and play the game locally **as many times as they wish** but will only have **10** submissions to the API from which their score will be calculated.<br>
 Although each team have 10 submissions to the API, their final ranking among other teams will be based on the **average of their highest 3 runs**.
-## __[Game Field](#game-field)__
+## [Game Field](#game-field)
 The game field of a game of tetris consists of **10** tiles in width and **20** tiles in height with the falling point of the tetrominos in the middle of top row.
 
 <p align= "center"><img src = "https://user-images.githubusercontent.com/77892920/236684174-62a63fc2-083f-490f-83ca-b54bb7a2165c.png"></p>
 
-## __[Tetrominos](#tetrominos)__
+## [Tetrominos](#tetrominos)
 In the game, there are 7 shapes (tetrominos) that you'll be moving and playing with which are: **L, J, S, Z, O, T, and I tetrominos**. Each of the 7 falling tetrominos (shapes) consists of **4 blocks** with different combination describing the tetromino.
 **Note that** on the game grid, the y axis is inverted, meaning that **downwards** is the positive y direction. Also the **falling point** of the tetrominos is *(0, 5)*. 
 
@@ -62,7 +62,7 @@ At each state *(before the next tetromino starts falling)* this function will pr
 
   * **logical_map** : **20x10 binary numpy array** providing you with the state of game field, with each element representing a cell in the game field. Each element can be **0** if that cell is empty on the game field, or a **1** if that cell has a block.
   * **current_tetromino** : **String** representing the shape of the *falling* tetromino in *this* move.
-  * **next_tetromino** : **String** representing the shape of the *faling* tetromino in *next* move.
+  * **next_tetromino** : **String** representing the shape of the *faling* tetromino in *nex|t* move.
   * **time_left** : **Integer** indicating the time left in seconds.
   * **level** : **Integer** indicating the current level of the player. (Explained more in detail in *[Scoring](#scoring)*)
   * **lines_cleared** : **Integer** indicating the total lines cleared in the game so far.
@@ -74,3 +74,23 @@ The function should return a **list of instructions** to control the tetromino. 
   
   - **"ROT_CW"** → Makes the tetromino **rotate clockwise** (if possible).
   - **"ROT_CCW"** → Makes the tetromino **rotate counter clockwise** (if possible).
+
+Similarly, to submit your algorithm to the API, head to `server_submission.py` file and fill `server_solver` function with your algorithm
+```Python3
+def server_solver(logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared) -> list:
+    return []
+```
+
+## __[Scoring](#scoring)__
+Scoring points in the game depends solely on 2 parameters: `lines_cleared` at the timea and `level` of the player.<br>
+#### Points per line
+Points awarded after clearing the lines depends on how many lines are cleared in the single move according to the following table:
+| Lines cleared | Points |
+|:-------------:|:------:|
+| 1             |   800  |
+| 2             |  1200  |
+| 3             |  1800  |
+| 4             |  2000  |
+
+#### Level
+Each run, the player starts at level **1**. After clearing 10 lines the player levels up.
