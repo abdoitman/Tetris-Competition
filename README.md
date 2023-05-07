@@ -1,6 +1,7 @@
 # __Tetris Competition__
 ![tetris-multicolored-pattern-4u7ed6koskqhcez1](https://user-images.githubusercontent.com/77892920/236696126-7109c136-e7a8-491e-aa3f-3e95ac2f6bf4.jpg)<br>
 <p align= "center">Files needed to participate in the friendly Tetris contest either to run the game locally or to submit a solution to the server.</p>
+
 ## __Table of Contents__
 * __[About The Contest](#about-the-contest)__
 * __[The Game](#the-game)__
