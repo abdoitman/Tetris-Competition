@@ -60,8 +60,7 @@ def local_solver(logical_map, current_tetromino, next_tetromino, time_left, leve
 ```
 At each state *(before the next tetromino starts falling)* this function will provide you with the following information:
 
-  * **logical_map** : **20x10 binary numpy array** providing you with the state of game field, with each element representing a cell in the game field. <br>
-    > Each element can be **0** if that cell is empty on the game field, or a **1** if that cell has a block.
+  * **logical_map** : **20x10 binary numpy array** providing you with the state of game field, with each element representing a cell in the game field. Each element can be **0** if that cell is empty on the game field, or a **1** if that cell has a block.
   * **current_tetromino** : **String** representing the shape of the *falling* tetromino in *this* move.
   * **next_tetromino** : **String** representing the shape of the *faling* tetromino in *next* move.
   * **time_left** : **Integer** indicating the time left in seconds.
