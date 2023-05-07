@@ -75,12 +75,6 @@ The function should return a **list of instructions** to control the tetromino. 
   - **"ROT_CW"** → Makes the tetromino **rotate clockwise** (if possible).
   - **"ROT_CCW"** → Makes the tetromino **rotate counter clockwise** (if possible).
 
-Similarly, to submit your algorithm to the API, head to `server_submission.py` file and fill `server_solver` function with your algorithm
-```Python3
-def server_solver(logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared) -> list:
-    return []
-```
-
 ## __[Scoring](#scoring)__
 Scoring points in the game depends solely on 2 parameters: `lines_cleared` at the time and `level` of the player.<br>
 ### Points per line
@@ -94,4 +88,14 @@ Points awarded after clearing the lines depends on how many lines are cleared in
 ### Level
 Each run, the player starts at level **1**. After clearing **10** lines the player levels up.
 ### Total Score
-After clearing some lines in a move, calculate the points awarded for them. Then the total score gets updated as: $Score_{total} \mathrel{+}= points . level$
+After clearing some lines in a move, the points awarded for them are calculated. Then the total score gets updated as: $Score_{total} \mathrel{+}= points . level$
+
+## __[Submitting to API](#submitting-to-api)__
+**First**, head to `server_submission.py` file and fill the `TEAM_ID` with your team_id. <br>
+Similar to the local submission, to submit your algorithm to the API, fill `server_solver` function with your algorithm
+```Python3
+def server_solver(logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared) -> list:
+    return []
+```
+This will send a GET request to the API to start the game and begin the trial for the team.
+
