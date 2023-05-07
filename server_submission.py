@@ -13,7 +13,7 @@ TEAM_ID = "itman023"
 NAME = ""
 ##########################
 
-from game import *
+from game.game import *
 
 def server_solver(logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared) -> list:
     return []
