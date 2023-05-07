@@ -107,18 +107,6 @@ class Tetris:
             self.state = self.return_state_info()
             controls = self.solver(*self.state)
             self.control_via_array(controls)
-    
-    def control(self, pressed_key):
-        if pressed_key == pg.K_LEFT:
-            self.tetromino.move(direction='left')
-        elif pressed_key == pg.K_RIGHT:
-            self.tetromino.move(direction='right')
-        if pressed_key == pg.K_UP:
-            self.tetromino.rotate('CW')
-        if pressed_key == pg.K_n:
-            self.tetromino.rotate("CCW")
-        if pressed_key == pg.K_DOWN:
-            self.speed_up =True
 
     def return_state_info(self):
         logical_field_array = np.array(self.field_array)
