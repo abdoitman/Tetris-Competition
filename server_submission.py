@@ -9,16 +9,14 @@
 ##########################
 # Enter the ID (consisting of 8 characters)
 # that was given to your team leader.
-
-TEAM_ID = ""
+TEAM_ID = "itman023"
 NAME = ""
 ##########################
 
-from game import App
+from game import *
 
 def server_solver(logical_map, current_tetromino, next_tetromino, time_left, level, score, lines_cleared) -> list:
-    pass
-
+    return []
 
 if __name__ == "__main__":
     server_game = App(server= True, Team_id= TEAM_ID)
