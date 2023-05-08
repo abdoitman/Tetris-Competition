@@ -91,7 +91,9 @@ Points awarded after clearing the lines depends on how many lines are cleared in
 ### Level
 Each run, the player starts at level **1**. After clearing **10** lines the player levels up.
 ### Total Score
-After clearing some lines in a move, the points awarded for them are calculated. Then the total score gets updated as: $Score_{total} \mathrel{+}= points . level$
+After clearing some lines in a move, the points awarded for them are calculated. Then the total score gets updated as:
+
+<p align="center"> $Score_{total} \mathrel{+}= points . level$ </p>
 
 ## __[Submitting to API](#submitting-to-api)__
 **First**, head to `server_submission.py` file and fill the `TEAM_ID` with your team_id. <br>
