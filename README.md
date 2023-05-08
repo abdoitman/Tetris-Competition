@@ -23,7 +23,7 @@ Although each team have 10 submissions to the API, their final ranking among oth
 The game field of a game of tetris consists of **10** tiles in width and **20** tiles in height with the falling point of the tetrominos in the middle of top row.<br>
 The origin point of the game field sets at **the upper left corner** with the positive x-axis in the **right direction** and the positive y-axis in the **downward direction**.
 
-<p align= "center"><img src = "https://-images.githubusercontent.com/77892920/236684174-62a63fc2-083f-490f-83ca-b54bb7a2165c.png"></p>
+<p align= "center"><img src = "https://user-images.githubusercontent.com/77892920/236684174-62a63fc2-083f-490f-83ca-b54bb7a2165c.png"></p>
 
 ## [Tetrominos](#tetrominos)
 In the game, there are 7 shapes (tetrominos) that you'll be moving and playing with which are: **L, J, S, Z, O, T, and I tetrominos**. Each of the 7 falling tetrominos (shapes) consists of **4 blocks** with different combination describing the tetromino.
