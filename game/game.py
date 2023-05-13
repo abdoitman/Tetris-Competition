@@ -66,6 +66,11 @@ class App:
             self.tetris.start_game = False
             
         for event in pg.event.get():
+            if not self.server:
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    self.running = False
+                    break
             if self.counter <= 0:
                 pg.time.wait(1000)
                 pg.quit()
