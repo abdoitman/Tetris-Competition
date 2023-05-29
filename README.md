@@ -12,6 +12,9 @@
 * __[How to Play](#how-to-play)__
 * __[Scoring](#scoring)__
 * __[Submitting to API](#submitting-to-api)__
+
+<hr>
+
 ## __[About The Contest](#about-the-contest)__
 The contest is a game of **Tetris** where each team will try to *implement the best algorithm* to play the game and score the most points in **90 seconds** by clearing more and more lines.
 
@@ -25,12 +28,16 @@ The origin point of the game field sets at **the upper left corner** with the po
 
 <p align= "center"><img src = "https://user-images.githubusercontent.com/77892920/236684174-62a63fc2-083f-490f-83ca-b54bb7a2165c.png"></p>
 
+<hr>
+
 ## [Tetrominos](#tetrominos)
 In the game, there are 7 shapes (tetrominos) that you'll be moving and playing with which are: **L, J, S, Z, O, T, and I tetrominos**. Each of the 7 falling tetrominos (shapes) consists of **4 blocks** with different combination describing the tetromino.
 **Note that** on the game grid, the y axis is inverted, meaning that **downwards** is the positive y direction. Also the **falling point** of the tetrominos is *(0, 5)*. 
 
 To represent a Tetromino, consider an origin point that all building blocks will be placed relative to, then the tetrominos are as following:<br>
 <p align= "center"><img src = "https://user-images.githubusercontent.com/77892920/236688970-261ba5e1-1379-4c1b-8eeb-bf927352c423.png"> </p>
+
+<hr>
 
 ### __[Tetromino Movement](#tetromino-movement)__
 **Note**: The game has an FPS of 120, which means the tetrominos fall at a rate of **2 tiles per second**.<br>
@@ -50,6 +57,8 @@ Tetrominos can have to types of **controlled movements**:<br>
   2. No tetromino should get generated 3 times in a row.<br>
   
 This algorithms treats the randomization of the tetrominos as if they were drawn from a bag and refiling the bag when it gets empty.
+
+<hr>
 
 ## __[How to Play](#how-to-play)__
 First you need to install the required packages using:
@@ -78,6 +87,8 @@ The function should return a **list of instructions** to control the tetromino. 
   - **"ROT_CW"** → Makes the tetromino **rotate clockwise** (if possible).
   - **"ROT_CCW"** → Makes the tetromino **rotate counter clockwise** (if possible).
 
+<hr>
+
 ## __[Scoring](#scoring)__
 Scoring points in the game depends solely on 2 parameters: `lines_cleared` at the time and `level` of the player.<br>
 ### Points per line
@@ -93,7 +104,9 @@ Each run, the player starts at level **1**. After clearing **10** lines the play
 ### Total Score
 After clearing any number of lines in a move, the points awarded for them are calculated. Then the total score gets updated as:
 
-<p align="center"> $Score_{total} \mathrel{+}= points . level$ </p>
+<p align="center"> $Score_{total} \mathrel{+}= points \enspace * \enspace level$ </p>
+
+<hr>
 
 ## __[Submitting to API](#submitting-to-api)__
 **First**, head to `server_submission.py` file and fill the `TEAM_ID` with your team_id. <br>
